@@ -18,8 +18,7 @@ void printb(dvec board,int n){
 	system("clear");
 	if(n==1)
 		cout<<"Computer has played."<<endl;
-	cout<<"Current board";
-	cout<<endl;
+	cout<<"Current board"<<endl<<endl;
 	dvec clone;
 	clone=board;
 	int diff=0;
@@ -28,7 +27,6 @@ void printb(dvec board,int n){
 			clone[i].pb(0);
 		}
 	}
-	cout<<endl;
 	F(i,0,7)
 		cout<<"  "<<i<<" ";
 	cout<<endl;
@@ -48,8 +46,7 @@ void printb(dvec board,int n){
 		}
 		cout<<"|"<<endl;
 	}
-	cout<<string(29,'-')<<endl;
-	cout<<endl;
+	cout<<string(29,'-')<<endl<<endl;
 }
 
 dvec p2c(dvec board){
@@ -119,10 +116,12 @@ bool isvalid(int x,int y,dvec board){
 
 int nc(dvec board,ivec neu){
 	int ind;
+	int m;
 	int f=0;
 	int max=0;
-	F(i,0,neu.size()){
+	F(i,0,neu.size()+1){
 		int n=board[neu[i]].size()-1;
+		m=neu[i];
 		int c=0;
 		if(n==-1)
 			c=1;
@@ -140,14 +139,17 @@ int nc(dvec board,ivec neu){
 				c-=board[i+1][n];
 		}
 		if(max<c){
-			ind=neu[i];
+			ind=m;
 			max=c;
 		}
 	}
-	if(f==1)
+	if(f==1){
+		//cout<<"meh ind is "<<ind<<endl;
 		return ind;
+	}
 	srand((unsigned) time(0));
 	int r=rand()%neu.size();
+	//cout<<"bleh"<<endl;
 	return neu[r];
 }
 
