@@ -143,9 +143,11 @@ int nc(dvec board,ivec neu){
 			max=c;
 		}
 	}
+	srand((unsigned) time(0));
 	if(f==1){
 		//cout<<"meh ind is "<<ind<<endl;
-		return ind;
+		if(ind>-1 && ind <7)
+			return ind;
 	}
 	srand((unsigned) time(0));
 	int r=rand()%neu.size();
