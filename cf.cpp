@@ -1,3 +1,20 @@
+                                                     /*##SSS%%%??????????????
+                                              ##SS%%?????????????????????????
+                                       ##SS%%????????????????????????????????
+                                ##SS%%????????????????????????????%??????????
+                          ##SS%%??????##      @@@@@@                S%???????
+                   ##SS%%?????????##        @%%@%%@%                 %%??????
+               ##SS%%?????##               **%&&#&(##??????????????%?????????
+                               ##SS%%???????   /.    ##?????????????%????????
+                         ##SS%%?*?????????     ..    |********S%?????????????
+                                          &&&. .     |         @?????????????
+                                          &.   .     |.     *@@@@%???????????
+                                          &#   |     |   .//@@@@@@@@@@@??????
+                                               / //&&#  **@@%%@@@@@@@%%@%????
+                   ##SS%%?************************************#@@@@@@@%%%%???
+                            ##SS%%?#???????????##???????????//@@%@@@@@%??????
+                 ##SS%%?     @@               ******.////////%@@@@@@@@%%?????
+                       ???*@@@@@@@@@@%%*@@@**** @@@&&.(    @@@@@@@@@%??????*/
 #include<bits/stdc++.h>
 #include <unistd.h>
 #define ll long long
@@ -7,6 +24,9 @@
 #define pb push_back
 #define F(i,a,b) for(int i=a;i<b;i++)
 #define B(u,a,b) for(int u=a;u>b;u--)
+#define rep(i,n) F(i,0,n)
+#define print(x) cout<<x<<endl
+#define nex cout<<endl
 using namespace std;
 void block(char c){
 	if(c=='3'||c=='1')
@@ -17,22 +37,22 @@ void block(char c){
 void printb(dvec board,int n){
 	system("clear");
 	if(n==1)
-		cout<<"Computer has played."<<endl;
+		print("Computer has played.");
 	cout<<"Current board"<<endl<<endl;
 	dvec clone;
 	clone=board;
 	int diff=0;
-	F(i,0,7){
+	rep(i,7){
 		while(clone[i].size()!=6){
 			clone[i].pb(0);
 		}
 	}
-	F(i,0,7)
+	rep(i,7)
 		cout<<"  "<<i<<" ";
-	cout<<endl;
+	nex;
 	B(j,5,-1){
 		cout<<string(29,'-')<<endl;
-		F(i,0,7){
+		rep(i,7){
 			if(clone[i].back()==1){
 				block('3');
 			}
@@ -51,8 +71,7 @@ void printb(dvec board,int n){
 
 dvec p2c(dvec board){
 	cout<<endl<<"Enter input (column index) : ";
-	int n;
-	cin>>n;
+	int n;cin>>n;
 	dvec clone;
 	clone=board;
 	clone[n].pb(1);
@@ -63,13 +82,13 @@ dvec p2c(dvec board){
 int checkend(dvec board){
 	dvec clone;
 	clone=board;
-	F(i,0,7){
+	rep(i,7){
 		while(clone[i].size()!=6){
 			clone[i].pb(0);
 		}
 	}
-	F(i,0,7){ //column
-		F(j,0,3){
+	rep(i,7){ //column
+		rep(j,3){
 			if(clone[i][j]==clone[i][j+1] && clone[i][j+2]==clone[i][j+3] && clone[i][j]==clone[i][j+2]&& clone[i][j]!=0){
 				if(clone[i][j]+100<102){
 					return(clone[i][j]+100);
@@ -78,8 +97,8 @@ int checkend(dvec board){
 
 		}
 	}
-	F(j,0,6){//row
-		F(i,0,4){
+	rep(j,6){//row
+		rep(i,4){
 			if(clone[i][j]==clone[i+1][j]&&clone[i+2][j]==clone[i+3][j]&&clone[i][j]==clone[i+3][j] && clone[i][j]!=0){
 				if(clone[i][j]+200<202){
 					return(clone[i][j]+200);
@@ -87,7 +106,7 @@ int checkend(dvec board){
 			}
 		}
 	}
-	F(i,0,4){//rev diag
+	rep(i,4){//rev diag
 		F(j,3,6){
 			if(clone[i][j]==clone[i+1][j-1]&&clone[i][j]==clone[i+2][j-2]&&clone[i+2][j-2]==clone[i+3][j-3]&& clone[i][j]!=0){
 				if(clone[i][j]+300<302){
@@ -96,8 +115,8 @@ int checkend(dvec board){
 			}
 		}
 	}
-	F(i,0,4){//fwd diag
-		F(j,0,3){
+	rep(i,4){//fwd diag
+		rep(j,3){
 			if(clone[i][j]==clone[i+1][j+1]&&clone[i][j]==clone[i+3][j+3]&&clone[i+2][j+2]==clone[i+3][j+3]&& clone[i][j]!=0){
 				if(clone[i][j]+400<402){
 					return(clone[i][j]+400);
@@ -119,7 +138,7 @@ int nc(dvec board,ivec neu){
 	int m;
 	int f=0;
 	int max=0;
-	F(i,0,neu.size()+1){
+	rep(i,neu.size()+1){
 		int n=board[neu[i]].size()-1;
 		m=neu[i];
 		int c=0;
@@ -143,15 +162,12 @@ int nc(dvec board,ivec neu){
 			max=c;
 		}
 	}
-	srand((unsigned) time(0));
+	
 	if(f==1){
-		//cout<<"meh ind is "<<ind<<endl;
 		if(ind>-1 && ind <7)
 			return ind;
 	}
-	srand((unsigned) time(0));
 	int r=rand()%neu.size();
-	//cout<<"bleh"<<endl;
 	return neu[r];
 }
 
@@ -162,15 +178,15 @@ dvec c2p(dvec board){
 	ivec fin;
 	dvec temp=clone;
 	int s=0;
-	F(i,0,7)
+	rep(i,7)
 		s+=clone[i].size();
-	srand((unsigned) time(0));
+	
 	if(s<=2){
 		int random=rand()%7;
 		clone[random].pb(-1);
 		return clone;
 	}
-	F(i,0,7){
+	rep(i,7){
 		clone=board;
 		if(clone[i].size()<6){
 			clone[i].pb(-1);
@@ -206,9 +222,9 @@ dvec c2p(dvec board){
 	return clone;
 }
 int main(){
+	srand((unsigned) time(0));
 	dvec board;
-	F(i,0,7)
-		board.pb(deque<int>());
+	rep(i,7)board.pb(deque<int>());
 	system("clear");
 	cout<<string(8,' ')<<"Welcome to Connect 4 (4-in-a-row)"<<endl;
 	cout<<"Aim:"<<endl<<"  "<<"To make a horizontal/vertical/diagonal 4 in a row"<<endl<<endl;
@@ -222,38 +238,25 @@ int main(){
 		while(gameover==0){
 			board=p2c(board);
 			gameover=checkend(board);
-			if(gameover!=0)
-				break;
+			if(gameover!=0)break;
 			board=c2p(board);
 			printb(board,1);
 			gameover=checkend(board);
 		}
 		if(gameover%10==1){
-			cout<<"You won."<<endl;
-			if(gameover==101){
-				cout<<"You made a vertical 4 in a row"<<endl;
-			}
-			else if(gameover==201){
-				cout<<"You made a horizontal 4 in a row"<<endl;	
-			}
-			else{
-				cout<<"You made a diagonal 4 in a row"<<endl;
-			}
+			print("You won.");
+			if(gameover==101)print("You made a vertical 4 in a row");
+			else if(gameover==201)print("You made a horizontal 4 in a row");
+			else	print("You made a diagonal 4 in a row");
 		}
 		else if(gameover%10==9){
-			cout<<"Computer won"<<endl;
-			if(gameover==99){
-				cout<<"It got a vertical 4 in a row"<<endl;
-			}
-			else if(gameover==199){
-				cout<<"It got a horizontal 4 in a row"<<endl;	
-			}
-			else{
-				cout<<"It got a diagonal 4 in a row"<<endl;
-			}
+			print("Computer won");
+			if(gameover==99)print("It got a vertical 4 in a row");
+			else if(gameover==199)print("It got a horizontal 4 in a row");	
+			else	print("It got a diagonal 4 in a row");
 		}
 		else{
-			cout<<"Draw"<<endl;
+			print("Draw");
 		}
 	}
 }
